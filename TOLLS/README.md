@@ -19,7 +19,7 @@ Website service install Windows dengan tema Blue Archive untuk NZ Store.
 - **Data Pelanggan**: Nama lengkap dan nomor telepon
 
 ### 📧 Sistem Pengiriman Email
-- Otomatis mengirim pesanan ke email izzaadirasya84@gmail.com
+- Otomatis mengirim pesanan ke email 
 - Konfirmasi langsung setelah pengiriman berhasil
 - Notifikasi loading dan success yang user-friendly
 
