@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NZ Store - Windows Installation Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --accent-blue: #60a5fa;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 24px;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 15px 40px rgba(59, 130, 246, 0.8), 0 0 50px rgba(59, 130, 246, 0.3); }
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: logoShine 3s linear infinite;
+        }
+
+        @keyframes logoShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .form-container {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% 100%;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .form-select option {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-2);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #60a5fa;
+            margin-top: 1rem;
+        }
+
+        .spinner {
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="container mx-auto px-4 py-8 relative z-10">
+        <div class="logo-container">
+            <div class="logo">
+                NZ
+            </div>
+        </div>
+        
+        <h1 class="main-title">NZ Store</h1>
+        <p class="subtitle">Windows Installation Service</p>
+        
+        <div class="form-container">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label class="form-label" for="laptop-brand">
+                        <i class="fas fa-laptop mr-2"></i>Merek Laptop
+                    </label>
+                    <select class="form-select" id="laptop-brand" name="laptop-brand" required>
+                        <option value="">Pilih Merek Laptop</option>
+                        <option value="asus">ASUS</option>
+                        <option value="acer">Acer</option>
+                        <option value="lenovo">Lenovo</option>
+                        <option value="hp">HP</option>
+                        <option value="dell">Dell</option>
+                        <option value="msi">MSI</option>
+                        <option value="toshiba">Toshiba</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="lg">LG</option>
+                        <option value="razer">Razer</option>
+                        <option value="gigabyte">Gigabyte</option>
+                        <option value="avita">Avita</option>
+                        <option value="xiaomi">Xiaomi</option>
+                        <option value="huawei">Huawei</option>
+                        <option value="microsoft">Microsoft Surface</option>
+                        <option value="apple">Apple MacBook</option>
+                        <option value="Advan">Advan</option>
+                        <option value="Axio">Axio</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="laptop-name">
+                        <i class="fas fa-tag mr-2"></i>Nama Laptop
+                    </label>
+                    <input type="text" class="form-input" id="laptop-name" name="laptop-name" required placeholder="Masukkan nama/tipe laptop Anda">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="year">
+                        <i class="fas fa-calendar mr-2"></i>Tahun Keluaran
+                    </label>
+                    <select class="form-select" id="year" name="year" required>
+                        <option value="">Pilih Tahun Keluaran</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                        <option value="2000">2000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="windows-version">
+                        <i class="fab fa-windows mr-2"></i>Windows Version
+                    </label>
+                    <select class="form-select" id="windows-version" name="windows-version" required>
+                        <option value="">Pilih Windows Version</option>
+                        <option value="windows-11">Windows 11</option>
+                        <option value="windows-10">Windows 10</option>
+                        <option value="windows-8">Windows 8</option>
+                        <option value="windows-7">Windows 7</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ram">
+                        <i class="fas fa-memory mr-2"></i>Kapasitas RAM
+                    </label>
+                    <select class="form-select" id="ram" name="ram" required>
+                        <option value="">Pilih Kapasitas RAM</option>
+                        <option value="2gb">2 GB</option>
+                        <option value="4gb">4 GB</option>
+                        <option value="8gb">8 GB</option>
+                        <option value="16gb">16 GB</option>
+                        <option value="32gb">32 GB</option>
+                        <option value="64gb">64 GB</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="modified-os-group" style="display: none;">
+                    <label class="form-label" for="modified-os">
+                        <i class="fas fa-magic mr-2"></i>OS Modifikasi (Untuk RAM 4GB)
+                    </label>
+                    <select class="form-select" id="modified-os" name="modified-os">
+                        <option value="">Tidak menggunakan OS modifikasi</option>
+                        <option value="spectre">Spectre</option>
+                        <option value="tiny11">Tiny11</option>
+                        <option value="revolt">Revolt OS</option>
+                        <option value="ghost-spectre">Ghost Spectre</option>
+                        <option value="lts">LTS (Long Term Support)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="name">
+                        <i class="fas fa-user mr-2"></i>Nama Lengkap
+                    </label>
+                    <input type="text" class="form-input" id="name" name="name" required placeholder="Masukkan nama lengkap Anda">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">
+                        <i class="fas fa-phone mr-2"></i>Nomor Telepon
+                    </label>
+                    <input type="tel" class="form-input" id="phone" name="phone" required placeholder="Masukkan nomor telepon Anda">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane mr-2"></i>Kirim Pesanan
+                </button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Mengirim pesanan...</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle mr-2"></i>
+                Pesanan Anda berhasil dikirim! Kami akan segera menghubungi Anda.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("9FpbTA7nrUxM4HscS");
+        })();
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Show/hide modified OS options based on RAM selection
+        document.getElementById('ram').addEventListener('change', function() {
+            const modifiedOsGroup = document.getElementById('modified-os-group');
+            if (this.value === '4gb') {
+                modifiedOsGroup.style.display = 'block';
+                document.getElementById('modified-os').required = true;
+            } else {
+                modifiedOsGroup.style.display = 'none';
+                document.getElementById('modified-os').required = false;
+                document.getElementById('modified-os').value = '';
+            }
+        });
+
+        // Form submission
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Show loading
+            loading.style.display = 'block';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Mengirim...';
+            
+            // Get form data
+            const formData = {
+                laptop_brand: document.getElementById('laptop-brand').value,
+                laptop_name: document.getElementById('laptop-name').value,
+                year: document.getElementById('year').value,
+                windows_version: document.getElementById('windows-version').value,
+                ram: document.getElementById('ram').value,
+                modified_os: document.getElementById('modified-os').value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                to_email: 'izzaadirasya84@gmail.com'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_gi23tlk', 'template_9xhp14l', formData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Hide loading and show success message
+                    loading.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('orderForm').reset();
+                    document.getElementById('modified-os-group').style.display = 'none';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Kirim Pesanan';
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Hide loading and show error
+                    loading.style.display = 'none';
+                    alert('Maaf, terjadi kesalahan saat mengirim pesanan. Silakan coba lagi.');
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Kirim Pesanan';
+                });
+        });
+
+        // Initialize particles on page load
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Add some interactive effects
+        document.querySelectorAll('.form-input, .form-select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

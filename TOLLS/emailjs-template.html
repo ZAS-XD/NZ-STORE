@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email Template untuk NZ Store</title>
+</head>
+<body style="font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 20px; margin: -30px -30px 30px -30px; border-radius: 10px 10px 0 0; text-align: center;">
+            <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">NZ Store</div>
+            <h2 style="margin: 0;">Pesanan Baru - Windows Installation Service</h2>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">👤 Nama Pelanggan:</span>
+            <span style="color: #666; margin-left: 10px;">{{name}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">📞 Nomor Telepon:</span>
+            <span style="color: #666; margin-left: 10px;">{{phone}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">💻 Merek Laptop:</span>
+            <span style="color: #666; margin-left: 10px;">{{laptop_brand}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">🏷️ Nama Laptop:</span>
+            <span style="color: #666; margin-left: 10px;">{{laptop_name}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">📅 Tahun Keluaran:</span>
+            <span style="color: #666; margin-left: 10px;">{{year}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">🪟 Windows Version:</span>
+            <span style="color: #666; margin-left: 10px;">{{windows_version}}</span>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">🧠 Kapasitas RAM:</span>
+            <span style="color: #666; margin-left: 10px;">{{ram}}</span>
+        </div>
+        
+        {{#modified_os}}
+        <div style="margin-bottom: 15px;">
+            <span style="font-weight: bold; color: #333;">🎯 OS Modifikasi:</span>
+            <span style="color: #666; margin-left: 10px;">{{modified_os}}</span>
+        </div>
+        {{/modified_os}}
+        
+        <div style="text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p>Pesanan dikirim pada: {{date}}</p>
+            <p>NZ Store - Windows Installation Service</p>
+            <p>🎮 Gaming Edition</p>
+        </div>
+    </div>
+</body>
+</html>

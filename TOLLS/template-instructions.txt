@@ -1,0 +1,43 @@
+CARA SETUP EMAILJS TEMPLATE:
+
+1. Login ke https://dashboard.emailjs.com/
+
+2. Buat Template Baru:
+   - Klik "Email Templates" di sidebar
+   - Klik "Create New Template"
+
+3. Isi Template Details:
+   - Template Name: "NZ Store Order Notification"
+   - Subject: "Pesanan Install Windows - {{name}}"
+   - To Email: izzaadirasya84@gmail.com
+
+4. Copy HTML Content:
+   - Buka file "emailjs-template.html"
+   - Copy semua HTML content
+   - Paste di "HTML Content" field di EmailJS
+
+5. Template Variables yang dibutuhkan:
+   - {{name}} - Nama pelanggan
+   - {{phone}} - Nomor telepon
+   - {{laptop_brand}} - Merek laptop
+   - {{laptop_name}} - Nama/tipe laptop
+   - {{year}} - Tahun keluaran
+   - {{windows_version}} - Windows version
+   - {{ram}} - Kapasitas RAM
+   - {{modified_os}} - OS modifikasi (jika ada)
+   - {{date}} - Tanggal pesanan
+   - {{to_email}} - Email tujuan
+
+6. Setelah template dibuat, copy Template ID-nya
+   - Format biasanya: template_xxxxxxxxxx
+   - Update di index.html baris:
+     emailjs.send('service_gi23tlk', 'TEMPLATE_ID_ANDA', formData)
+
+7. Test dengan mengisi form di website
+
+TEMPLATE ID CONTOH:
+- template_abc123def456
+- template_nzstore2024
+- template_windows_install
+
+Ganti "YOUR_TEMPLATE_ID" di index.html dengan Template ID yang Anda dapatkan.

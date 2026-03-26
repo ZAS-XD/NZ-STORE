@@ -1,0 +1,14 @@
+INSTRUKSI TOOLS FALL OUT NEW VEGAS FIX LAUNCHER LOOP WIN11:
+
+1. Right-click salah satu .bat file (mulai dari launch_fnv_skip_launcher.bat) >> "Run as administrator".
+2. Jika launcher masih muncul/loop:
+   - Coba launch_fnv_win11_fix.bat sebagai admin.
+   - Install NVSE (New Vegas Script Extender) dari https://nvse.silverlock.org/ lalu pakai launch_fnv_advanced.bat.
+3. Tambahan fix:
+   - Di Steam: Right-click FNV >> Properties >> Set launch options: -skipLauncher -dx9single
+   - Disable Steam overlay di Properties.
+   - Run FalloutNV.exe sebagai admin + Compatibility Windows 7.
+4. Jika error DirectX: Install vcredist_x86.exe dan dxsetup dari installer FNV.
+5. Test di mode windowed dulu, lalu fullscreen.
+
+Tools ini aman, langsung launch game skipping launcher. Selamat bermain!
