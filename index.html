@@ -839,14 +839,26 @@
                 year: document.getElementById('year').value,
                 windows_version: document.getElementById('windows-version').value,
                 ram: document.getElementById('ram').value,
-                modified_os: document.getElementById('modified-os').value,
+                modified_os: document.getElementById('modified-os').value || 'Tidak menggunakan',
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,
                 to_email: 'izzaadirasya84@gmail.com'
             };
             
+            console.log('Form Data:', formData);
+            
+            // Check if EmailJS is initialized
+            if (typeof emailjs === 'undefined') {
+                console.error('EmailJS not loaded');
+                loading.style.display = 'none';
+                alert('EmailJS tidak terload. Silakan refresh halaman dan coba lagi.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Kirim Pesanan';
+                return;
+            }
+            
             // Send email using EmailJS
-            emailjs.send('service_gi23tlk', 'template_9xhp14l', formData)
+            emailjs.send('service_p1fm23h', 'template_9xhp14l', formData)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     
@@ -868,10 +880,16 @@
                     }, 5000);
                 }, function(error) {
                     console.log('FAILED...', error);
+                    console.error('Error details:', error);
                     
                     // Hide loading and show error
                     loading.style.display = 'none';
-                    alert('Maaf, terjadi kesalahan saat mengirim pesanan. Silakan coba lagi.');
+                    
+                    let errorMessage = 'Maaf, terjadi kesalahan saat mengirim pesanan. Silakan coba lagi.';
+                    if (error.text) {
+                        errorMessage += '\nError: ' + error.text;
+                    }
+                    alert(errorMessage);
                     
                     // Reset button
                     submitBtn.disabled = false;
